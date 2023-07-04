@@ -33,7 +33,7 @@ class User:
       print(account.rate)
     return self
 
-  def transfer_money(self, amount,  other_user):
+  def transfer_money(self, amount, other_user):
     self.accounts[0].balance -= amount
     other_user.accounts[0].balance += amount
 
