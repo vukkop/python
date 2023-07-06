@@ -4,21 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='my_style.css') }}">
 </head>
 <body>
 
 
-  <h1>Welcome</h1>
-
-
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-    {% for i in range(0, times): %}
-    <div
-      style="width: 150px; height: 150px; border: 5px black solid; border-radius: 20px; background-color: {{color}};">
+  <h1 style="background-color: {{light}}; color: {{dark}}">***Checkerboard***</h1>
+  <div class="board" style="width: calc({{x}} * 105px);">
+    {% for i in range(0, y): %}
+    {% for j in range(0, x): %}
+    {% if i % 2 == 0 and j % 2 == 1 : %}
+    <div class="light square" style="background-color: {{light}};">
     </div>
+    {%elif i % 2 == 1 and j % 2 == 0 : %}
+    <div class="light square" style="background-color: {{light}};">
+    </div>
+    {% else %}
+    <div class="dark square" style="background-color: {{dark}};">
+    </div>
+    {% endif %}
+    {% endfor %}
     {% endfor %}
   </div>
-
 
 
 </body>
