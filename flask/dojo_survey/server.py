@@ -5,20 +5,23 @@ app.secret_key = 'secret01'
 
 @app.route('/')
 def load_home_page():
-
   return render_template('index.html')
+
+@app.route('/process', methods=['POST'])
+def submit():
+  session['data']={**request.form}
+  return redirect('/result',)
 
 @app.route('/result')
 def result():
-
-  return render_template('result.html')
+  subscribed = "Yes" if 'subscribe' in session['data'] else "No"
+  return render_template('result.html', subscribed=subscribed)
 
 
 @app.route('/destroy_session')
 def destroy_session():
-  if 'num' in session:
-    session.clear()
-    return redirect('/')
+  session.clear()
+  return redirect('/')
 
 
 if __name__=="__main__":
