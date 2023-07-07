@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container text-center">
+    <h1 class="mt-4">Counter</h1>
+    <h2 class="mt-4" name="num">{{num}} time</h2>
+    <a href="/" class="btn btn-success mt-3">Add visit</a>
+    <a href="/add_two" class="btn btn-warning mt-3">Add 2 visits</a>
+    <a href="/destroy_session" class="btn btn-danger mt-3">Reset</a>
+
+    <form action="/add_from_input" method="post" class="d-flex justify-content-center">
+      <div class="input-group mt-3 mb-3" style="width: 50%;">
+        <input class="form-control" type='number' name='number' placeholder="Add visits:" aria-label="Add visits:"
+          aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" id="button-addon2" type='submit'>Submit</button>
+      </div>
+    </form>
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+</body>
+</html>
