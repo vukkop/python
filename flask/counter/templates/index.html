@@ -9,16 +9,16 @@
 </head>
 <body>
   <div class="container text-center">
-    <h1 class="mt-4">Counter</h1>
-    <h2 class="mt-4" name="num">{{num}} time</h2>
-    <a href="/" class="btn btn-success mt-3">Add visit</a>
-    <a href="/add_two" class="btn btn-warning mt-3">Add 2 visits</a>
+    <h2 class="mt-4">{{counter}} Counter</h2>
+    <h1 class="mt-4" name="num">{{num}} Visits</h1>
+    <a href="/add" class="btn btn-success mt-3">Add to counter</a>
+    <a href="/add_two" class="btn btn-warning mt-3">Add 2 to counter</a>
     <a href="/destroy_session" class="btn btn-danger mt-3">Reset</a>
 
     <form action="/add_from_input" method="post" class="d-flex justify-content-center">
       <div class="input-group mt-3 mb-3" style="width: 50%;">
-        <input class="form-control" type='number' name='number' placeholder="Add visits:" aria-label="Add visits:"
-          aria-describedby="button-addon2">
+        <input class="form-control" type='number' name='number' placeholder="Add to counter:"
+          aria-label="Add to counter:" aria-describedby="button-addon2">
         <button class="btn btn-outline-secondary" id="button-addon2" type='submit'>Submit</button>
       </div>
     </form>

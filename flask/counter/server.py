@@ -7,21 +7,30 @@ app.secret_key = 'secret01'
 def load_home_page():
   if not 'num' in session:
     session['num'] = 1
+    session['counter'] = 1
   else:
     session['num'] += 1
-  return render_template('index.html', num = session['num'])
+  return render_template('index.html', num = session['num'],counter = session['counter'])
+
+@app.route('/add')
+def add():
+  if not 'counter' in session:
+    session['counter'] = 1
+  else:
+    session['counter'] += 1
+  return redirect('/')
 
 @app.route('/add_two')
 def add_two():
-  if not 'num' in session:
-    session['num'] = 1
+  if not 'counter' in session:
+    session['counter'] = 1
   else:
-    session['num'] += 2
-  return render_template('index.html', num = session['num'])
+    session['counter'] += 2
+  return redirect('/')
 
 @app.route('/add_from_input', methods=['POST'])
 def add_from_input():
-  session['num'] += int(request.form['number'])-1
+  session['counter'] += int(request.form['number'])
   return redirect('/')
 
 @app.route('/destroy_session')
