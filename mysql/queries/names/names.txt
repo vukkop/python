@@ -1,0 +1,16 @@
+SELECT * FROM names.names;
+
+INSERT INTO `names`.`names` (`name`) VALUES ('Vukasin');
+
+INSERT INTO names.names (`name`) VALUES ('Bob');
+INSERT INTO names.names (`name`) VALUES ('Jack');
+
+INSERT INTO names.names (`name`) VALUES ('Jacky'),('Ryan');
+
+UPDATE names.names 
+SET name = 'Rob'
+WHERE id=3;
+
+DELETE FROM names.names WHERE id = 6;
+
+INSERT INTO names.names (`name`) VALUES ('Ryan');
