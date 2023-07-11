@@ -1,0 +1,41 @@
+SELECT * FROM dojos_and_ninjas.dojos;
+SELECT * FROM dojos_and_ninjas.ninjas;
+
+insert into dojos_and_ninjas.dojos (`name`) values ("Judo"), ("Aikido"), ("Kendo");
+
+SET SQL_SAFE_UPDATES = 0;
+delete from dojos_and_ninjas.dojos;
+
+insert into dojos_and_ninjas.dojos (`name`) values ("Judo"), ("Aikido"), ("Kendo");
+
+
+
+
+insert into dojos_and_ninjas.ninjas (`first_name`, `last_name`, `age`, `dojo_id`) 
+values ("Vuk", "Koprivica", "34", "4"), ("Bob", "Bobers", "24", "4"), ("Rob", "Roberts", "26", "4");
+
+insert into dojos_and_ninjas.ninjas (`first_name`, `last_name`, `age`, `dojo_id`) 
+values ("Marc", "Anderson", "36", "5"), ("Benjamin ", "Martinez", "27", "5"), ("Sophia ", "Thompson", "31", "5");
+
+insert into dojos_and_ninjas.ninjas (`first_name`, `last_name`, `age`, `dojo_id`) 
+values ("Ethan ", "Mitchell", "26", "6"), ("Ava  ", "Reynolds", "29", "6"), ("Jackson  ", "Carter", "22", "6");
+
+
+select * from dojos_and_ninjas.ninjas where dojo_id = 4;
+
+select * from dojos_and_ninjas.ninjas where dojo_id = 6;
+
+
+select dojos.id, dojos.name from dojos_and_ninjas.ninjas
+join dojos_and_ninjas.dojos on dojos_and_ninjas.dojos.id = dojos_and_ninjas.ninjas.dojo_id
+where dojos_and_ninjas.ninjas.id in (select max(id)
+from dojos_and_ninjas.ninjas);
+
+
+select * from dojos_and_ninjas.ninjas
+join dojos_and_ninjas.dojos on dojos_and_ninjas.dojos.id = dojos_and_ninjas.ninjas.dojo_id
+where dojos_and_ninjas.ninjas.id = 13;
+
+
+select * from dojos_and_ninjas.ninjas
+join dojos_and_ninjas.dojos on dojos_and_ninjas.dojos.id = dojos_and_ninjas.ninjas.dojo_id;
