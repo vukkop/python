@@ -14,8 +14,11 @@ def submit():
 
 @app.route('/result')
 def result():
-  subscribed = "Yes" if 'subscribe' in session['data'] else "No"
-  return render_template('result.html', subscribed=subscribed)
+  if 'data' not in session:
+    return redirect('/')
+  else:
+    subscribed = "Yes" if 'subscribe' in session['data'] else "No"
+    return render_template('result.html', subscribed=subscribed)
 
 
 @app.route('/destroy_session')
