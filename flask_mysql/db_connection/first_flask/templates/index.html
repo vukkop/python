@@ -43,7 +43,7 @@
       <tbody>
         {% for friend in friends %}
         <tr>
-          <th scope="row">{{friend.index}}</th>
+          <th scope="row">{{loop.index}}</th>
           <td> {{ friend.first_name }} </td>
           <td> {{ friend.last_name }} </td>
           <td> {{ friend.occupation }} </td>
