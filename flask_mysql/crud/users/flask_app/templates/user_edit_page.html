@@ -10,25 +10,25 @@
 <body>
   <div class="container">
 
-    <h1 class="mb-4">Create User</h1>
+    <h1 class="mb-4 mt-4">Edit User</h1>
 
-    <form action="/create_user" method="post" class="form-label">
+    <form action="/users/{{user.id}}/update" method="post" class="form-label">
       <div class="row g-3 align-items-center">
         <div class="col-auto">
           <label for="fname" class="form-label">First Name:</label>
-          <input type="text" name="fname" class="form-control">
+          <input type="text" name="fname" value="{{user.first_name}}" class="form-control">
         </div>
         <div class="col-auto">
           <label for="lname" class="form-label">Last Name:</label>
-          <input type="text" name="lname" class="form-control">
+          <input type="text" name="lname" value="{{user.last_name}}" class="form-control">
         </div>
         <div class="col-auto">
           <label for="email" class="form-label">Email:</label>
-          <input type="text" name="email" class="form-control">
+          <input type="text" name="email" value="{{user.email}}" class="form-control">
         </div>
       </div>
-      <a class="btn btn-secondary mt-3" href="/">Back</a>
-      <input class="btn btn-primary mt-3" type="submit" value="Create User">
+      <a class="btn btn-secondary mt-3" href="/users">Back</a>
+      <input class="btn btn-primary mt-3" type="submit" value="Update User">
     </form>
 
   </div>
