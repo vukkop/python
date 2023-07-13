@@ -12,8 +12,9 @@
 
     <div class="row">
       <div class="col-8">
-        <h2 class="mb-4 mt-4">_______ Ninjas</h2>
+        <h2 class="mb-4 mt-4">{{dojo.name}} Ninjas</h2>
 
+        {% if dojo.all_ninjas | length > 0 %}
         <table class="table">
           <thead>
             <tr>
@@ -23,15 +24,19 @@
             </tr>
           </thead>
           <tbody>
-
+            {% for ninja in dojo.all_ninjas %}
             <tr>
-              <td> </td>
-              <td> </td>
-              <td> </td>
+              <td>{{ninja.first_name}}</td>
+              <td>{{ninja.last_name}}</td>
+              <td>{{ninja.age}}</td>
             </tr>
-
+            {% endfor %}
           </tbody>
         </table>
+        {% else %}
+        <p>There are no ninjas</p>
+        {% endif %}
+
       </div>
     </div>
 

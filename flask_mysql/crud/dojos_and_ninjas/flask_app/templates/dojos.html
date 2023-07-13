@@ -16,7 +16,7 @@
       <div class="col-6">
         <h2 class="mb-4 mt-4">New Dojo</h2>
 
-        <form action="" method="post">
+        <form action="/dojos/create" method="post">
           <div class="d-flex align-items-baseline">
             <label for="dojo_name" class="form-label">Name:</label>
             <input required type="text" name="dojo_name" class="form-control ml-2">
@@ -41,7 +41,7 @@
             {% for dojo in dojos %}
             <tr>
               <th scope="row">{{loop.index}}</th>
-              <td><a href="/dojos/1">{{ dojo.name }}</a></td>
+              <td><a href="/dojos/{{dojo.id}}">{{ dojo.name }}</a></td>
             </tr>
             {% endfor %}
           </tbody>

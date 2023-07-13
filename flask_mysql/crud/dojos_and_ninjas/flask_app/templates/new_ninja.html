@@ -13,14 +13,18 @@
       <div class="col-8">
         <h2 class="mb-4 mt-4">New Ninja</h2>
 
-        <form action="" method="post" class="form-label">
+        <form action="/ninjas/create" method="post" class="form-label">
 
           <div class="row mb-2">
             <div class="col-4">
               <label for="dojo_name" class="form-label">Dojo:</label>
             </div>
             <div class="col-8">
-              <input required type="text" name="dojo_name" class="form-control">
+              <select name="dojo_id" class="form-select" aria-label="Default select example">
+                {% for dojo in dojos %}
+                <option value="{{ dojo.id }}">{{ dojo.name }}</option>
+                {% endfor %}
+              </select>
             </div>
           </div>
           <div class="row mb-2">
@@ -44,7 +48,7 @@
               <label for="age" class="form-label">Age:</label>
             </div>
             <div class="col-8">
-              <input required type="text" name="age" class="form-control">
+              <input required type="number" name="age" class="form-control">
             </div>
           </div>
 
