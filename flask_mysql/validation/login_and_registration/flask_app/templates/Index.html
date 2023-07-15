@@ -94,10 +94,17 @@
             <form action="/users/login" method="post" class="form-label">
 
               <label for="email" class="form-label">Email:</label>
-              <input required type="text" name="email" class="form-control">
+              <input type="text" name="email" class="form-control">
 
               <label for="password" class="form-label">Password:</label>
-              <input required type="text" name="password" class="form-control">
+              <input type="text" name="password" class="form-control">
+              {% for message in get_flashed_messages(category_filter=['err_login']) %}
+              <p class="text-danger">
+                <small>
+                  {{message}}
+                </small>
+              </p>
+              {% endfor %}
 
               <button type="submit" class="btn btn-success mt-3">Login</button>
 
