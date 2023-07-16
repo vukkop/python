@@ -2,7 +2,6 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import DB, bcrypt
 from flask import flash, session
 import re
-from datetime import datetime, date
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 PASSWORD_REGEX = re.compile(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
@@ -14,7 +13,6 @@ PASSWORD_REGEX = re.compile(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
 '''
 NAME_REGEX = re.compile(r'^[a-zA-Z]+$')
 
-
 class User:
 
   def __init__( self , data ):
@@ -22,15 +20,13 @@ class User:
     self.first_name = data['first_name']
     self.last_name = data['last_name']
     self.email = data['email']
-    self.date_of_birth = data['date_of_birth']
     self.password = data['password']
     self.created_at = data['created_at']
     self.updated_at = data['updated_at']
 
-
   @classmethod
   def save(cls, data):
-    query = "INSERT INTO users ( first_name, last_name, email, date_of_birth, password ) VALUES ( %(first_name)s, %(last_name)s, %(email)s, %(date_of_birth)s, %(password)s );"
+    query = "INSERT INTO users ( first_name, last_name, email, password ) VALUES ( %(first_name)s, %(last_name)s, %(email)s, %(password)s );"
     return connectToMySQL(DB).query_db( query, data )
 
   @classmethod
@@ -42,12 +38,6 @@ class User:
       return cls(dict)
     else:
       return None
-
-  @staticmethod
-  def get_age(birthday):
-    today = date.today()
-    born = datetime.strptime(birthday, '%Y-%m-%d').date()
-    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
   @staticmethod
   def validate_registration(data):
@@ -75,13 +65,6 @@ class User:
       is_valid = False
     elif User.get_by_email(data):
       flash("Account with this email already exists.", "err_email")
-      is_valid = False
-
-    if len(data['date_of_birth']) < 1:
-      flash("Please select your date of birth.", "err_date_of_birth")
-      is_valid = False
-    elif User.get_age(data['date_of_birth']) < 10:
-      flash("You must be at least 10 years old.", "err_date_of_birth")
       is_valid = False
 
     if not PASSWORD_REGEX.match(data['password']):

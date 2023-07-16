@@ -48,16 +48,6 @@
               </p>
               {% endfor %}
 
-              <label for="date_of_birth" class="form-label">Date of birth:</label>
-              <input type="date" name="date_of_birth" class="form-control">
-              {% for message in get_flashed_messages(category_filter=['err_date_of_birth']) %}
-              <p class="text-danger">
-                <small>
-                  {{message}}
-                </small>
-              </p>
-              {% endfor %}
-
               <label for="password" class="form-label">Password:</label>
               <input type="password" name="password" class="form-control">
               {% for message in get_flashed_messages(category_filter=['err_password']) %}
