@@ -44,7 +44,11 @@ class Recipe:
   def get_by_id(cls, id):
     query = "SELECT * FROM recipes WHERE id = %(id)s"
     results = connectToMySQL(DB).query_db(query, {'id': id})
-    print(results)
     if results:
       dict = results[0]
       return cls(dict)
+
+  @classmethod
+  def update(cls, data):
+    query = "UPDATE recipes SET name = %(name)s, description = %(description)s, instructions = %(instructions)s, date_made = %(date_made)s, under_30 = %(under_30)s WHERE id = %(id)s;"
+    return connectToMySQL(DB).query_db( query, data)

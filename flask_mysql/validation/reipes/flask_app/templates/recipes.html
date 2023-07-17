@@ -31,7 +31,7 @@
           <th scope="col">Name</th>
           <th scope="col">Under 30</th>
           <th scope="col">Posted By</th>
-          <th scope="col">Actions</th>
+          <th scope="col text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -44,7 +44,7 @@
           <td>No</td>
           {%endif%}
           <td>{{recipe.first_name}}</td>
-          <td>
+          <td class="text-center">
             <a class="btn btn-primary" href="/recipes/{{recipe.id}}">View</a>
             {%if session.user_id == recipe.user_id%}
             <a class="btn btn-warning" href="/recipes/{{recipe.id}}/edit">Edit</a>

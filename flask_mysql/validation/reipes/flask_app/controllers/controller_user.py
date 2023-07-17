@@ -9,7 +9,6 @@ def home():
     return redirect("/")
   user = User.get_by_id(session['user_id'])
   recipes = Recipe.get_all()
-  print(recipes)
   return render_template("recipes.html", user=user, recipes=recipes)
 
 @app.route("/logout")

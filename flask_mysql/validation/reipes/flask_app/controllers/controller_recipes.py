@@ -27,11 +27,27 @@ def delete_recipie(id):
 
 @app.route("/recipes/<int:id>")
 def display_recipie(id):
-  print(id)
   if 'user_id' not in session:
     return redirect("/")
   user = User.get_by_id(session['user_id'])
   recipe = Recipe.get_by_id(id)
   return render_template("display_recipe.html", recipe=recipe, user=user)
+
+@app.route("/recipes/<int:id>/edit")
+def edit_recipie(id):
+  if 'user_id' not in session:
+    return redirect("/")
+  recipe = Recipe.get_by_id(id)
+  return render_template("edit_recipe.html", recipe=recipe)
+
+@app.route("/recipes/<int:id>/update", methods = ["POST"])
+def update_recipie(id):
+  if 'user_id' not in session:
+    return redirect("/")
+  data = {
+    **request.form,
+    'id': id}
+  Recipe.update(data)
+  return redirect("/recipes")
 
 
