@@ -27,7 +27,6 @@ class Recipe:
 
   @classmethod
   def save(cls, data):
-    print(data)
     query = "INSERT INTO recipes ( name, description, instructions, date_made, under_30, user_id) VALUES ( %(name)s, %(description)s, %(instructions)s, %(date_made)s, %(under_30)s, %(user_id)s);"
     return connectToMySQL(DB).query_db( query, data )
 
@@ -35,3 +34,17 @@ class Recipe:
   def get_all(cls):
     query = "SELECT * FROM recipes JOIN users ON recipes.user_id = users.id;"
     return connectToMySQL(DB).query_db( query )
+
+  @classmethod
+  def delete(cls, id):
+    query = "DELETE FROM recipes WHERE id = %(id)s;"
+    return connectToMySQL(DB).query_db(query, {'id':id})
+
+  @classmethod
+  def get_by_id(cls, id):
+    query = "SELECT * FROM recipes WHERE id = %(id)s"
+    results = connectToMySQL(DB).query_db(query, {'id': id})
+    print(results)
+    if results:
+      dict = results[0]
+      return cls(dict)

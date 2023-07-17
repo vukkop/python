@@ -18,3 +18,20 @@ def create_recipe():
   Recipe.save(data)
   return redirect('/recipes')
 
+@app.route("/recipes/<int:id>/delete")
+def delete_recipie(id):
+  if 'user_id' not in session:
+    return redirect("/")
+  Recipe.delete(id)
+  return redirect("/recipes")
+
+@app.route("/recipes/<int:id>")
+def display_recipie(id):
+  print(id)
+  if 'user_id' not in session:
+    return redirect("/")
+  user = User.get_by_id(session['user_id'])
+  recipe = Recipe.get_by_id(id)
+  return render_template("display_recipe.html", recipe=recipe, user=user)
+
+
