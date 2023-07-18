@@ -77,10 +77,13 @@ class User:
       is_valid = False
 
     if not PASSWORD_REGEX.match(data['password']):
-      flash("Password must contain 8 characters and at least 1 number, 1 lower case and 1 uppercase letter.", "err_password")
+      flash("Password must contain at least 8 characters and 1 number, 1 lower case and 1 uppercase letter.", "err_password")
       is_valid = False
 
-    if not data['password'] == data['confirm_password']:
+    if len(data['confirm_password']) < 8:
+      flash("Please confirm your password.", "err_confirm_password")
+      is_valid = False
+    elif not data['password'] == data['confirm_password']:
       flash("Please confirm your password.", "err_confirm_password")
       is_valid = False
 
@@ -98,13 +101,15 @@ class User:
     if len(data['password']) < 9:
       is_valid = False
 
+    potential_user = User.get_by_email(data)
+    if not potential_user:
+      is_valid = False
+
     if not is_valid:
       flash("Invalid username or password.", "err_login")
       return is_valid
 
-    potential_user = User.get_by_email(data)
-    if potential_user:
-      if bcrypt.check_password_hash(potential_user.password ,data['password']):
-        session['user_id'] = potential_user.id
+    if bcrypt.check_password_hash(potential_user.password ,data['password']):
+      session['user_id'] = potential_user.id
 
     return is_valid

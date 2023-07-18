@@ -29,9 +29,9 @@
       <thead>
         <tr>
           <th scope="col">Name</th>
-          <th scope="col">Under 30</th>
-          <th scope="col">Posted By</th>
-          <th scope="col text-center">Actions</th>
+          <th scope="col" class="text-center">Under 30</th>
+          <th scope="col" class="text-center">Posted By</th>
+          <th scope="col" class="text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -39,14 +39,14 @@
         <tr>
           <th>{{recipe.name}}</th>
           {%if recipe.under_30 == 1%}
-          <td>Yes</td>
+          <td class="text-center">Yes</td>
           {%else%}
-          <td>No</td>
+          <td class="text-center">No</td>
           {%endif%}
-          <td>{{recipe.first_name}}</td>
+          <td class="text-center">{{recipe.user.first_name}}</td>
           <td class="text-center">
             <a class="btn btn-primary" href="/recipes/{{recipe.id}}">View</a>
-            {%if session.user_id == recipe.user_id%}
+            {%if session.user_id == recipe.user.id%}
             <a class="btn btn-warning" href="/recipes/{{recipe.id}}/edit">Edit</a>
             <a class="btn btn-danger" href="/recipes/{{recipe.id}}/delete">Delete</a>
             {%endif%}
